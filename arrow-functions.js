@@ -1,4 +1,4 @@
-
+/* Author: Vikash Saharan */
 /* get Length Example ES5 and ES6 */
 const materials =  [
     'Hydrogen',
