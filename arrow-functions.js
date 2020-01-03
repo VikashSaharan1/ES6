@@ -129,3 +129,25 @@ callback = callback || function() {} // ok
 
 
 callback = callback || (() => {});
+
+/* ------------------------------------------------------- End -------------------------------------------------------------------- */
+
+/* another example */
+
+var object = {
+    name: "Name",
+    arrowGetName: () => this.name,
+    regularGetName: function() { return this.name },
+    arrowGetThis: () => this,
+    regularGetThis: function() { return this }
+
+}
+
+console.log(this.name);
+console.log(object.arrowGetName());
+console.log(object.arrowGetThis());
+console.log(this);
+console.log(object.regularGetName());
+console.log(object.regularGetThis());
+
+/* ------------------------------------------------------- End -------------------------------------------------------------------- */  
