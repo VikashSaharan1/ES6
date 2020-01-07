@@ -69,6 +69,138 @@ const [red, green, yellow] = foo;
 console.log(red); // one
 console.log(green); //two
 console.log(yellow); // three
+/* ------------------------------------------------------- End -------------------------------------------------------------------- */
+/* Unpacking values from a regular expression match */
+function parseProtocol(url) {
+const parsedUrl =  /^(\w+)\:\/\/([^\/]+)\/(.*)$/.exec(url);
+
+    if(!parsedUrl) {
+        return false;
+    }
+
+    console.log(parsedUrl); //
+
+    const [, protocol, fullhost, fullpath] = parsedUrl;
+    return protocol;
+}
+console.log(parseProtocol("https://www.google.co.in/"));
+/* ------------------------------------------------------- End -------------------------------------------------------------------- */
+/* Ignoring some returned values */
+function f() {
+    return [1, 2, 3];
+}
+const[aa, ,bb] = f();
+console.log(aa); // 1
+console.log(bb); // 3
+
+[,,] = f() // ignore all values
+/* ------------------------------------------------------- End -------------------------------------------------------------------- */
+/* Object destructing */
+
+const o = {p: 42, q: true}
+
+const {pp, qq} = o
+
+console.log(pp);
+
+console.log(qq);
+
+/* Assignment without declaration */
+let m, n;
+
+({m, n} = {m: 10, n: true})
+
+console.log(m);
+console.log(n);
+
+/* Default value */
+const {mm = 2, nn = 4} = {mm:10}
+
+console.log(mm); // 10
+console.log(nn); // 4
+
+/* ------------------------------------------------------- End -------------------------------------------------------------------- */
+/* Unpacking fields from objects passed as function parameter */
+
+const user = {
+    id: 42,
+    displayName: "jdoe",
+    fullname: {
+        firstname: "John",
+        lastname: "Doe"
+    }
+};
+
+function userId({id}) {
+     return id;
+}
+
+function whois({displayName, fullname: {firstname: name}}) {
+    return `${displayName} is ${name}`;
+}
+
+console.log(userId(user));  // 42
+console.log(whois(user));   // jdoe is john
+
+/* ------------------------------------------------------- End -------------------------------------------------------------------- */
+/* Nested Object and array destructing */
+
+const metadata = {
+    title: 'Scratchpad',
+    translations: [
+        {
+            locale: 'de',
+            localization_tags: [],
+            last_edit: '2014-04-14T08:43:37',
+            url: '/de/docs/Tools/Scratchpad',
+            title: 'JavaScript-Umgebung'
+        }
+    ],
+    url: '/en-US/docs/Tools/Scratchpad'
+}
+
+let {
+    title: englishTitle,  // rename
+    translations: [
+        {
+            title: localeTitle // rename
+        }
+    ]
+} = metadata;
+
+console.log(englishTitle);
+console.log(localeTitle);
+
+/* ------------------------------------------------------- End -------------------------------------------------------------------- */
+/* For of iteration and destructuring */
+
+const people = [
+    {
+        name: 'Mike Smith',
+        family: {
+            mother: 'Jane Smith',
+            father: 'Harry Smith',
+            sister: 'Samantha Smith'
+        },
+        age: 35
+    },
+    {
+        name: 'Tom Jones',
+        family: {
+            mother: 'Norah Jones',
+            father: 'Richard Jones',
+            brother: 'Howard Jones'
+        },
+        age: 33
+    }
+]
+;
+
+for(const {name: n, family: {father:f}} of people) {
+        console.log('Name: '+ n + ', Father' +f);
+}
+//  Name: Mike Smith, FatherHarry Smith
+// Name: Tom Jones, FatherRichard Jones
 
 /* ------------------------------------------------------- End -------------------------------------------------------------------- */
 /* Fail Soft detructing */
